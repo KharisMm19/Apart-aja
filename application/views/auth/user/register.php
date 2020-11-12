@@ -38,7 +38,8 @@
 				<i class="zmdi zmdi-lock"></i>
 			</div>
 			<input type="checkbox" onclick="passwordShowUnshow()">Show/Unshow Password
-			<h4 style="margin-top: 5px;">Already have an account? <a href="<?= base_url() ?>auth/loginUser" style="text-decoration: none;color:#333">Login Here!</a></h4>
+			<h4 style="margin-top: 5px;"><a href="<?= base_url() ?>auth/forgot_password" style="text-decoration: none;color:#2874A6 ">Forgot Password?</a></h4>
+			<h4 style="margin-top: 5px;">Already have an account? <a href="<?= base_url() ?>auth/loginUser" style="text-decoration: none;color:#2874A6 ">Login Here!</a></h4>
 			<button type="register" value="register" name="register">Register
 				<i class="zmdi zmdi-arrow-right"></i>
 			</button>

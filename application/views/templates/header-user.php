@@ -35,7 +35,7 @@
 							<div class="mbr-navbar__column">
 								<ul class="mbr-navbar__items mbr-navbar__items--right float-left mbr-buttons mbr-buttons--freeze mbr-buttons--right btn-decorator mbr-buttons--active mbr-buttons--only-links">
 									<li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-danger" href="<?= base_url(); ?>">HOME</a></li>
-									<li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-danger" href="<?= base_url(); ?>ruangan">BROWSE APARTEMENT</a></li>
+									<li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-danger" href="<?= base_url(); ?>ruangan">ROOM APARTEMENT</a></li>
 									<li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-danger" href="<?= base_url() ?>user/profile">PROFILE</a></li>
 									<li class="mbr-navbar__item"><a class="mbr-buttons__link btn text-danger" href="<?= base_url() ?>auth/logout">LOGOUT</a></li>
 								</ul>

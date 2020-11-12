@@ -191,6 +191,9 @@ class Auth extends CI_Controller
 			$this->load->view('auth/user/register');
 		} else {
 			$this->auth_model->registerUser();
+
+			$this->_sendEmail();
+
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Congratulations, your account has been created.
           </div>');
@@ -222,6 +225,49 @@ class Auth extends CI_Controller
             Congratulations, your account has been created.
           </div>');
 			redirect('auth/loginUser');
+		}
+	}
+
+	private function _sendEmail(){
+		$config = [
+			'protocol' => '',
+			'smtp_host' => '',
+			//belum
+		];
+	}
+
+	public function forgot_password()
+	{
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		if ($this->form_validation->run() == false) {
+			$data['title'] = 'Forgot Password';
+			$this->load->view('auth/user/header', $data);
+			$this->load->view('auth/user/forgot-password');
+		} else {
+			$email = $this->input->post('email');
+			$user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+			if ($user) {
+				// $token = base64_encode(random_bytes(32));
+				// $user_token = [
+				// 	'email' => $email,
+				// 	'token' => $token,
+				// 	'date_created' => time()
+				// ];
+
+				// $this->db->insert('user_token', $user_token);
+				// $this->_sendEmail($token, 'forgotPassword');
+				
+				// $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            	// Please check your email!
+         		// </div>');
+				// redirect('auth/forgot_password');
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+            	Email is not registered!
+         		</div>');
+				redirect('auth/forgot_password');
+			}
 		}
 	}
 

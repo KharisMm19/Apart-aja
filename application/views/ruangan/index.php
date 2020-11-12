@@ -1,14 +1,6 @@
 <div class="container" style="padding: 20px; margin: 10 px auto; margin-left: 220px; margin-right: auto;margin-top:50px;">
 	<div class="row" style="margin-top: 80px;">
 		<div class="col-lg-12" style="margin: 0 auto;">
-			<form action="" method="POST">
-				<div class="form-group row mt-2">
-					<div class="col-sm-5">
-						<input type="text" name="keyword" class="form-control" id="" placeholder="Cari berdasarkan nama / kota">
-					</div>
-					<button type="submit" class="btn btn-sm btn-success" name="cari">Cari Sekarang</button>
-				</div>
-			</form>
 			<?php
 			foreach ($ruangan as $ruanganApartemen) {
 			?>

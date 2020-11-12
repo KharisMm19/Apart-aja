@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2020 at 03:49 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Nov 11, 2020 at 01:37 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,12 +29,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `apartemen` (
-  `id_apartemen` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `nama_apartemen` varchar(255) NOT NULL,
-  `alamat_apartemen` varchar(255) NOT NULL,
-  `kota_kabupaten` varchar(200) NOT NULL,
-  `provinsi` varchar(200) NOT NULL,
+  `id_apartemen` int(1) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `nama_apartemen` varchar(10) NOT NULL,
+  `alamat_apartemen` varchar(20) NOT NULL,
+  `kota_kabupaten` varchar(20) NOT NULL,
+  `provinsi` varchar(20) NOT NULL,
   `gambar_apartemen` text NOT NULL,
   `maps_link` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,8 +44,8 @@ CREATE TABLE `apartemen` (
 --
 
 INSERT INTO `apartemen` (`id_apartemen`, `id_pengelola`, `nama_apartemen`, `alamat_apartemen`, `kota_kabupaten`, `provinsi`, `gambar_apartemen`, `maps_link`) VALUES
-(13, 1, 'Kusuma', 'Jl. Sersan Kusman No.27', 'Malang', 'Jawa Timur', '0307202017132911032020085558a.jpg', 'https://goo.gl/maps/oY8TDJzL5JcQvgu17'),
-(22, 2, 'Gemerlap Rembulan', 'Jl. Panglima Sudirman 22', 'Malang', 'Jawa Timur', '01072020170046110320200704591.jpg', '');
+(13, 1, 'Kusuma', 'Jl. Sersan Kusman No', 'Malang', 'Jawa Timur', '0307202017132911032020085558a.jpg', 'https://goo.gl/maps/oY8TDJzL5JcQvgu17'),
+(22, 2, 'Gemerlap R', 'Jl. Panglima Sudirma', 'Malang', 'Jawa Timur', '01072020170046110320200704591.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -53,11 +54,11 @@ INSERT INTO `apartemen` (`id_apartemen`, `id_pengelola`, `nama_apartemen`, `alam
 --
 
 CREATE TABLE `fasilitas_tambahan` (
-  `id_fasilitas` int(11) NOT NULL,
-  `id_apartemen` int(11) NOT NULL,
-  `nama_fasilitas` varchar(100) NOT NULL,
+  `id_fasilitas` int(1) NOT NULL,
+  `id_apartemen` int(1) NOT NULL,
+  `nama_fasilitas` varchar(20) NOT NULL,
   `deskripsi_fasilitas` text NOT NULL,
-  `harga` int(40) NOT NULL
+  `harga` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -67,8 +68,8 @@ CREATE TABLE `fasilitas_tambahan` (
 --
 
 CREATE TABLE `gambar_apartemen` (
-  `id_gambar` int(11) NOT NULL,
-  `id_ruangan` int(11) NOT NULL,
+  `id_gambar` int(2) NOT NULL,
+  `id_ruangan` int(2) NOT NULL,
   `gambar` text NOT NULL,
   `deskripsi_singkat` varchar(50) NOT NULL DEFAULT 'Image'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -98,12 +99,12 @@ INSERT INTO `gambar_apartemen` (`id_gambar`, `id_ruangan`, `gambar`, `deskripsi_
 --
 
 CREATE TABLE `kritik_saran` (
-  `id_kritik_saran` int(11) NOT NULL,
-  `id_apartemen` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_kritik_saran` int(3) NOT NULL,
+  `id_apartemen` int(1) NOT NULL,
+  `id_user` int(3) NOT NULL,
   `isi_kritik_saran` text NOT NULL,
-  `tanggal_masuk` varchar(50) NOT NULL,
-  `kategori` varchar(255) NOT NULL,
+  `tanggal_masuk` varchar(10) NOT NULL,
+  `kategori` varchar(7) NOT NULL,
   `respon_pengelola` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -123,11 +124,11 @@ INSERT INTO `kritik_saran` (`id_kritik_saran`, `id_apartemen`, `id_user`, `isi_k
 --
 
 CREATE TABLE `pemilik_apartemen` (
-  `id_pemilik_apartemen` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_ruangan` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `nama_nomer_ruangan` varchar(255) NOT NULL,
+  `id_pemilik_apartemen` int(1) NOT NULL,
+  `id_user` int(3) NOT NULL,
+  `id_ruangan` int(2) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `nama_nomer_ruangan` varchar(20) NOT NULL,
   `lantai` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -148,16 +149,16 @@ INSERT INTO `pemilik_apartemen` (`id_pemilik_apartemen`, `id_user`, `id_ruangan`
 --
 
 CREATE TABLE `pengelola_apartemen` (
-  `id_pengelola` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `no_telpon` varchar(255) NOT NULL,
-  `jenis_kelamin` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `nama` varchar(20) NOT NULL,
+  `no_telpon` varchar(15) NOT NULL,
+  `jenis_kelamin` varchar(10) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `gambar_identitas` text NOT NULL,
   `kyc_identitas` text NOT NULL,
-  `status_pengelola` varchar(255) NOT NULL DEFAULT 'Belum Terverifikasi'
+  `status_pengelola` varchar(20) NOT NULL DEFAULT 'Belum Terverifikasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -165,9 +166,9 @@ CREATE TABLE `pengelola_apartemen` (
 --
 
 INSERT INTO `pengelola_apartemen` (`id_pengelola`, `nama`, `no_telpon`, `jenis_kelamin`, `email`, `username`, `password`, `gambar_identitas`, `kyc_identitas`, `status_pengelola`) VALUES
-(1, 'Ardan Anjung Kusuma', '6285252135912', 'Pria', 'ardananjungkusuma@gmail.com', 'ardananjungkusuma', 'd2219d75098abd01493908d2f7f4d13d', '14072020160622ktp.jpg', '14072020160622example_kyc_(2).jpg', 'Terverifikasi'),
+(1, 'Ardan Anjung Kusuma', '6285252135912', 'Pria', 'ardananjungkusuma@gmail.c', 'ardananjungkusuma', 'd2219d75098abd01493908d2f7f4d13d', '14072020160622ktp.jpg', '14072020160622example_kyc_(2).jpg', 'Terverifikasi'),
 (2, 'Agit Ari Irawan', '62851213512', 'Pria', 'agitari@gmail.com', 'agit', 'a505c964caa2a7a9f158378df55462f9', 'None', 'None', 'Belum Terverifikasi'),
-(3, 'Adristi Iftitah Yuniar', '6285875327846', 'Wanita', 'adristi@gmail.com', 'adristi', '65d2eddc1daa96cc4db3ef4a33b14d92', '17072020160030ktp.jpg', '17072020160030example_kyc_(2).jpg', 'Belum Terverifikasi'),
+(3, 'Adristi Iftitah Yuni', '6285875327846', 'Wanita', 'adristi@gmail.com', 'adristi', '65d2eddc1daa96cc4db3ef4a33b14d92', '17072020160030ktp.jpg', '17072020160030example_kyc_(2).jpg', 'Belum Terverifikasi'),
 (4, 'A Safa Dhiata', 'None', 'Pria', 'asafa@gmail.com', 'asafa', '72c88c1a4049809d8d031acf12fc8ddb', 'None', 'None', 'Belum Terverifikasi');
 
 -- --------------------------------------------------------
@@ -177,11 +178,11 @@ INSERT INTO `pengelola_apartemen` (`id_pengelola`, `nama`, `no_telpon`, `jenis_k
 --
 
 CREATE TABLE `rekening_bank` (
-  `id_rekening` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `nama_bank` varchar(25) NOT NULL,
-  `nama_pemilik` varchar(60) NOT NULL,
-  `no_rek` varchar(90) NOT NULL
+  `id_rekening` int(1) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `nama_bank` varchar(15) NOT NULL,
+  `nama_pemilik` varchar(25) NOT NULL,
+  `no_rek` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -202,14 +203,14 @@ INSERT INTO `rekening_bank` (`id_rekening`, `id_pengelola`, `nama_bank`, `nama_p
 --
 
 CREATE TABLE `ruangan_apartemen` (
-  `id_ruangan` int(11) NOT NULL,
-  `id_apartemen` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `nama_ruangan` varchar(255) NOT NULL,
-  `jenis_ruangan` varchar(250) NOT NULL,
-  `harga_beli` bigint(20) NOT NULL,
+  `id_ruangan` int(2) NOT NULL,
+  `id_apartemen` int(1) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `nama_ruangan` varchar(20) NOT NULL,
+  `jenis_ruangan` varchar(15) NOT NULL,
+  `harga_beli` bigint(7) NOT NULL,
   `detail_ruangan` text NOT NULL,
-  `sisa_ruang_apartemen` int(10) NOT NULL,
+  `sisa_ruang_apartemen` int(2) NOT NULL,
   `gambar_utama` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -229,14 +230,14 @@ INSERT INTO `ruangan_apartemen` (`id_ruangan`, `id_apartemen`, `id_pengelola`, `
 --
 
 CREATE TABLE `transaksi_pembelian` (
-  `id_transaksi_pembelian` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_ruangan` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `kode_transaksi` int(11) NOT NULL,
-  `total_harga` int(100) NOT NULL,
+  `id_transaksi_pembelian` int(3) NOT NULL,
+  `id_user` int(3) NOT NULL,
+  `id_ruangan` int(1) NOT NULL,
+  `id_pengelola` int(1) NOT NULL,
+  `kode_transaksi` int(5) NOT NULL,
+  `total_harga` int(8) NOT NULL,
   `tanggal_transaksi` date NOT NULL,
-  `status_pemesanan` varchar(255) NOT NULL DEFAULT 'Belum Terverifikasi',
+  `status_pemesanan` varchar(20) NOT NULL DEFAULT 'Belum Terverifikasi',
   `pesan_pengelola` text NOT NULL,
   `gambar_bukti_transfer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -258,17 +259,17 @@ INSERT INTO `transaksi_pembelian` (`id_transaksi_pembelian`, `id_user`, `id_ruan
 --
 
 CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `no_telpon` varchar(20) NOT NULL,
-  `jenis_kelamin` varchar(50) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `id_user` int(3) NOT NULL,
+  `nama` varchar(20) NOT NULL,
+  `alamat` varchar(20) NOT NULL,
+  `no_telpon` varchar(15) NOT NULL,
+  `jenis_kelamin` varchar(10) NOT NULL,
+  `email` varchar(25) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(40) NOT NULL,
   `gambar_kartu_identitas` text NOT NULL,
-  `status_user` varchar(255) NOT NULL DEFAULT 'Belum Terverifikasi',
-  `level` varchar(11) NOT NULL DEFAULT 'user'
+  `status_user` varchar(20) NOT NULL DEFAULT 'Belum Terverifikasi',
+  `level` varchar(10) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -276,11 +277,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `alamat`, `no_telpon`, `jenis_kelamin`, `email`, `username`, `password`, `gambar_kartu_identitas`, `status_user`, `level`) VALUES
-(1, 'Martin Amanu Khusna', 'Jl. Melati 15 Surabaya', 'None', 'Pria', 'martinamanu17@gmail.com', 'martin', '34f74c049edea51851c6924f4a386762', 'None', 'Belum Terverifikasi', 'user'),
+(1, 'Martin Amanu Khusna', 'Jl. Melati 15 Suraba', 'None', 'Pria', 'martinamanu17@gmail.com', 'martin', '34f74c049edea51851c6924f4a386762', 'None', 'Belum Terverifikasi', 'user'),
 (2, 'Ardan Anjung Kusuma', 'None', '085252161282', 'Pria', 'ardananjung@apartaja.com', 'ardananjung', 'd2219d75098abd01493908d2f7f4d13d', 'None', 'Terverifikasi', 'kepala'),
 (3, 'Agit Ari Irawan', 'None', 'None', 'Pria', 'agitari@gmail.com', 'agit', 'a505c964caa2a7a9f158378df55462f9', 'None', 'Belum Terverifikasi', 'user'),
-(4, 'Hunayn Risatayn', 'Jl. Dieng 95 Sidoarjo, Jawa Timur', '628574827364', 'Pria', 'hunaynr@gmail.com', 'hunayn', '01e340317b4ea5bf03eae0912a2d4546', 'None', 'Belum Terverifikasi', 'user'),
-(6, 'Osa Mahanani', 'Jl. Basuki Rahmat 25 Blitar', '0895609076721', 'Wanita', 'osamahanani@gmail.com', 'osa', '374762714ec840404a3c2c4afc32cc22', '12072020142601ktp.jpg', 'Terverifikasi', 'user'),
+(4, 'Hunayn Risatayn', 'Jl. Dieng 95 Sidoarj', '628574827364', 'Pria', 'hunaynr@gmail.com', 'hunayn', '01e340317b4ea5bf03eae0912a2d4546', 'None', 'Belum Terverifikasi', 'user'),
+(6, 'Osa Mahanani', 'Jl. Basuki Rahmat 25', '0895609076721', 'Wanita', 'osamahanani@gmail.com', 'osa', '374762714ec840404a3c2c4afc32cc22', '12072020142601ktp.jpg', 'Terverifikasi', 'user'),
 (7, 'Denny Nur', 'None', 'None', 'Pria', 'dennynur@gmail.com', 'denny', '34814f45c5b89ee4ea7e77662747a0e6', 'None', 'Belum Terverifikasi', 'user'),
 (8, 'Risda Dewi', 'None', '085212345623', 'Wanita', 'risdadewi@apartaja.com', 'risda', '1439c273342e708a0be4874aa6994b52', 'None', 'Terverifikasi', 'staff'),
 (10, 'Unero Bhagaskara', 'Jl. Pisang Kipas', '62849823842', 'Pria', 'unero@gmail.com', 'unero', 'b98b83c535005abfdf996d5e248dc944', 'None', 'Belum Terverifikasi', 'user'),
@@ -373,61 +374,61 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `apartemen`
 --
 ALTER TABLE `apartemen`
-  MODIFY `id_apartemen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_apartemen` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `fasilitas_tambahan`
 --
 ALTER TABLE `fasilitas_tambahan`
-  MODIFY `id_fasilitas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fasilitas` int(1) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `gambar_apartemen`
 --
 ALTER TABLE `gambar_apartemen`
-  MODIFY `id_gambar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_gambar` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `kritik_saran`
 --
 ALTER TABLE `kritik_saran`
-  MODIFY `id_kritik_saran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_kritik_saran` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pemilik_apartemen`
 --
 ALTER TABLE `pemilik_apartemen`
-  MODIFY `id_pemilik_apartemen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pemilik_apartemen` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pengelola_apartemen`
 --
 ALTER TABLE `pengelola_apartemen`
-  MODIFY `id_pengelola` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pengelola` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rekening_bank`
 --
 ALTER TABLE `rekening_bank`
-  MODIFY `id_rekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_rekening` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ruangan_apartemen`
 --
 ALTER TABLE `ruangan_apartemen`
-  MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_ruangan` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `transaksi_pembelian`
 --
 ALTER TABLE `transaksi_pembelian`
-  MODIFY `id_transaksi_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_transaksi_pembelian` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
