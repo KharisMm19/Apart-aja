@@ -1,4 +1,4 @@
-# Apart Aja
+# Apart Aja (Sistem Informasi Sewa Apartemen )
 
 Nama Kelompok TI3A:
 
@@ -7,3 +7,5 @@ Nama Kelompok TI3A:
 3. Husnul Hotimah
 4. Kharis Muhaimin
 5. Qorinda Yulvarisma
+
+# MATA KULIAH PROYEK 2
